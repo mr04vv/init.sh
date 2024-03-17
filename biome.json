@@ -3,8 +3,12 @@
 	"organizeImports": {
 		"enabled": true
 	},
+	"files": {
+		"ignore": ["node_modules"]
+	},
 	"linter": {
 		"enabled": true,
+		"ignore": ["node_modules"],
 		"rules": {
 			"recommended": true,
 			"correctness": {
@@ -20,6 +24,6 @@
 		"indentWidth": 4,
 		"lineWidth": 80,
 		"lineEnding": "lf",
-		"ignore": []
+		"ignore": ["node_modules"]
 	}
 }
