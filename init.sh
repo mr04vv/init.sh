@@ -4,8 +4,9 @@ set -eu
 shell=$(echo "$SHELL")
 
 function main() {
-  # protoのinstall
+  # protoとvoltaのinstall
   install_proto
+  install_volta
   # reloadしてパスを通す
   reload_shell
   # .prototoolsに記述されているものをinstallする
@@ -20,6 +21,14 @@ function install_proto() {
   fi
   echo "Installing proto..."
   /bin/bash -c "$(curl -fsSL https://moonrepo.dev/install/proto.sh)"
+}
+
+function install_volta() {
+  if is_already_installed volta; then
+    return
+  fi
+  echo "Installing volta..."
+  /bin/bash -c "$(curl -fsSL https://get.volta.sh)"
 }
 
 function reload_shell() {  

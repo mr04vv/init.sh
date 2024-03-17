@@ -26,22 +26,12 @@ const installBrew = async () => {
 	await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
 };
 
-const installVoltaAndNi = async () => {
-	const isAlreadyInstalledVolta = await isAlreadyInstalled("volta");
-	if (!isAlreadyInstalledVolta) {
-		printInstallingApp("volta");
-		await $`/bin/bash -c "$(curl -fsSL curl https://get.volta.sh)"`;
-	}
-	await $`which node`;
+const installNodeAndNi = async () => {
+	// TODO: セットアップ直後のPCでnodeのinstall判定がうまく動くか確認する
 	const isAlreadyInstalledNode = await isAlreadyInstalled("node");
 	if (!isAlreadyInstalledNode) {
 		await printInstallingApp("node");
 		await $`volta install node`;
-	}
-	const isAlreadyInstalledNpm = await isAlreadyInstalled("npm");
-	if (!isAlreadyInstalledNpm) {
-		await printInstallingApp("npm");
-		await $`volta install npm`;
 	}
 	const isAlreadyInstalledNi = await isAlreadyInstalled("ni");
 	if (!isAlreadyInstalledNi) {
@@ -50,10 +40,8 @@ const installVoltaAndNi = async () => {
 	}
 };
 
-const main = async () => {
-	await installVoltaAndNi();
+export const initInstall = async () => {
+	await installNodeAndNi();
 	await installBrew();
 	await installSelectedApp();
 };
-
-await main();
