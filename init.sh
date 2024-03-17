@@ -11,6 +11,7 @@ function main() {
   reload_shell
   # .prototoolsに記述されているものをinstallする
   proto u
+  install_vscode
   # スクリプトの終了後にコマンドが使えるようにシェルを再起動
   $SHELL -l
 }
@@ -40,6 +41,15 @@ function reload_shell() {
     */zsh) source ~/.zshrc ;;
     *) echo "サポートされていないシェルです。" ;;
   esac
+}
+
+# MEMO: 初期で無いと何かと不便なのでいれる
+function install_vscode() {
+    if is_already_installed code; then
+    return
+  fi
+  echo "Installing vscode..."
+  brew install --cask visual-studio-code
 }
 
 function is_already_installed() {
