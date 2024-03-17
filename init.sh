@@ -29,6 +29,8 @@ function install_volta() {
   fi
   echo "Installing volta..."
   /bin/bash -c "$(curl -fsSL https://get.volta.sh)"
+  # MEMO: voltaのパス設定がうまくいかないので無理やりsetupを実行
+  ~/.volta/bin/volta setup
 }
 
 function reload_shell() {  

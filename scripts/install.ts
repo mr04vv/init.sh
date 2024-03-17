@@ -11,10 +11,10 @@ const isAlreadyInstalled = async (command: string) => {
 	return text.length > 0;
 };
 
-const installSelectedApp = () => {
-	installAppComands.map(async (command) => {
-		await $`echo ${command}`;
-	});
+const installSelectedApp = async () => {
+	for (const command of installAppComands) {
+		await $`brew install ${$.escape(command)}`;
+	}
 };
 
 const printInstallingApp = async (app: string) => {
@@ -22,8 +22,11 @@ const printInstallingApp = async (app: string) => {
 };
 
 const installBrew = async () => {
-	await printInstallingApp("brew");
-	await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
+	const isAlreadyInstalledBrew = await isAlreadyInstalled("brew");
+	if (!isAlreadyInstalledBrew) {
+		await printInstallingApp("brew");
+		await $`/bin/bash -c "$(curl -fL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
+	}
 };
 
 const installNodeAndNi = async () => {

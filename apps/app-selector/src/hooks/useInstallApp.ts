@@ -31,9 +31,7 @@ export const useInstallApp = () => {
 		for (const app of apps) {
 			if (!selectedAppList.includes(app.name)) continue;
 			commandList.push(
-				`"brew install ${app.formula ? "" : "--cask"} ${
-					app.brewAppName
-				}"`,
+				`"${app.formula ? "" : "--cask"} ${app.brewAppName}"`,
 			);
 		}
 
