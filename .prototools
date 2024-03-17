@@ -1,4 +1,5 @@
 bun = "1.0.31"
+node = "21.7.1"
 
 [settings]
 auto-install = true
