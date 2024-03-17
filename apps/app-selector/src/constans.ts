@@ -4,6 +4,7 @@ import Chrome from "./assets/chrome.png";
 import Cursor from "./assets/cursor.png";
 import Docker from "./assets/docker.png";
 import Edge from "./assets/edge.png";
+import FFmpeg from "./assets/ffmepg-logo.webp";
 import Figma from "./assets/figma.png";
 import Firefox from "./assets/firefox.png";
 import Flux from "./assets/flux.png";
@@ -57,6 +58,12 @@ export const apps = [
 		name: "Edge",
 		icon: Edge,
 		brewAppName: "microsoft-edge",
+	},
+	{
+		name: "FFmpeg",
+		icon: FFmpeg,
+		brewAppName: "ffmpeg",
+		formula: true,
 	},
 	{
 		name: "Figma",
